@@ -19,7 +19,7 @@ Currently, I am focused on strengthening my foundation in software engineering w
   college: "Velalar College of Engineering & Technology",
   degree: "B.Tech – Information Technology",
   graduationYear: "2027",
-  photo: "/images/profile.jpg",
+  photo: "/images/profile.png",
   resumeUrl: "/resume/Mohammed_Shimak_A_Resume.pdf",
   socialLinks: {
     github: "https://github.com/shimak",

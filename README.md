@@ -1,36 +1,158 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Mohammed Shimak A — Personal Portfolio
 
-## Getting Started
+A modern, premium personal portfolio website built with Next.js, TypeScript, Tailwind CSS, Framer Motion, and Firebase.
 
-First, run the development server:
+## ✨ Features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+- **Premium Light Theme** — White/indigo/violet design system with glassmorphism cards
+- **Fully Responsive** — Mobile-first design tested from 360px to 1440px+
+- **Smooth Animations** — Framer Motion scroll reveals, hover effects, and micro-interactions
+- **Admin Dashboard** — Edit all portfolio content without touching source code
+- **Firebase Auth** — Secure admin authentication
+- **Firestore** — Real-time content management
+- **SEO Optimized** — Metadata, OpenGraph, JSON-LD structured data
+- **Accessible** — Keyboard navigation, focus states, semantic HTML, reduced motion support
+
+## 🚀 Tech Stack
+
+| Layer | Tech |
+|-------|------|
+| Framework | Next.js 15 (App Router) |
+| Language | TypeScript |
+| Styling | Tailwind CSS v4 + Custom CSS |
+| Animations | Framer Motion |
+| Icons | Lucide React |
+| Auth | Firebase Authentication |
+| Database | Firebase Firestore |
+| Deployment | Vercel |
+
+## 📁 Project Structure
+
+```
+src/
+├── app/
+│   ├── page.tsx           # Main portfolio page
+│   ├── layout.tsx         # Root layout + SEO
+│   ├── globals.css        # Design system + CSS variables
+│   └── admin/
+│       ├── page.tsx       # Admin login
+│       ├── layout.tsx     # Admin auth provider
+│       └── dashboard/
+│           ├── layout.tsx     # Dashboard shell + sidebar
+│           ├── page.tsx       # Dashboard overview
+│           ├── profile/       # Edit profile
+│           ├── skills/        # Manage skills
+│           ├── projects/      # Manage projects
+│           ├── upcoming/      # Manage upcoming projects
+│           ├── education/     # Manage education
+│           ├── certifications/# Manage certifications
+│           └── achievements/  # Manage achievements
+├── components/
+│   ├── Navbar.tsx
+│   ├── Hero.tsx
+│   ├── About.tsx
+│   ├── Skills.tsx
+│   ├── Projects.tsx
+│   ├── UpcomingProjects.tsx
+│   ├── Education.tsx
+│   ├── Achievements.tsx
+│   ├── Contact.tsx
+│   └── Footer.tsx
+└── lib/
+    ├── data.ts            # Static seed data
+    ├── types.ts           # TypeScript types
+    ├── firebase.ts        # Firebase init
+    ├── firestore.ts       # Firestore CRUD helpers
+    └── AuthContext.tsx    # Auth context provider
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🔧 Local Setup
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+1. **Clone the repo**
+   ```bash
+   git clone https://github.com/your-username/portfolio.git
+   cd portfolio
+   ```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+2. **Install dependencies**
+   ```bash
+   npm install
+   ```
 
-## Learn More
+3. **Set up environment variables**
+   ```bash
+   cp .env.example .env.local
+   ```
+   Fill in your Firebase credentials in `.env.local`.
 
-To learn more about Next.js, take a look at the following resources:
+4. **Run the development server**
+   ```bash
+   npm run dev
+   ```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+   Open [http://localhost:3000](http://localhost:3000).
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 🔥 Firebase Setup
 
-## Deploy on Vercel
+1. Go to [Firebase Console](https://console.firebase.google.com)
+2. Create a new project
+3. Enable **Authentication** → Email/Password
+4. Create an admin user (Auth → Users → Add user)
+5. Enable **Firestore Database** → Start in production mode
+6. Copy your web app config to `.env.local`
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Firestore Security Rules
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```firestore
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Public read access for portfolio content
+    match /{document=**} {
+      allow read: if true;
+      allow write: if request.auth != null;
+    }
+  }
+}
+```
+
+## 🎛️ Admin Dashboard
+
+Access the admin panel at `/admin`. Log in with your Firebase admin email/password.
+
+**What you can manage:**
+- Profile (name, bio, social links, resume URL)
+- Skills (add/edit/delete, with category and level)
+- Projects (full CRUD with tech tags, features, links)
+- Upcoming Projects (CRUD with status)
+- Education (timeline entries)
+- Certifications (with optional URL)
+- Achievements (with type and event details)
+
+## 📄 Resume
+
+Place your resume PDF at: `public/resume/Mohammed_Shimak_A_Resume.pdf`
+
+It will be downloadable from the hero section.
+
+## 🚀 Deploy to Vercel
+
+1. Push to GitHub
+2. Import repo in [Vercel](https://vercel.com)
+3. Add environment variables in Vercel dashboard (same as `.env.local`)
+4. Deploy!
+
+## 🌐 Environment Variables for Vercel
+
+```
+NEXT_PUBLIC_FIREBASE_API_KEY
+NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN
+NEXT_PUBLIC_FIREBASE_PROJECT_ID
+NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET
+NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID
+NEXT_PUBLIC_FIREBASE_APP_ID
+```
+
+## 📝 License
+
+MIT © Mohammed Shimak A
